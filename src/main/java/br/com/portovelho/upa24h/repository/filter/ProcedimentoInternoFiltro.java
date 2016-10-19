@@ -11,4 +11,6 @@ public class ProcedimentoInternoFiltro {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	
 }

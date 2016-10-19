@@ -23,9 +23,9 @@
 			
 			<form method="post" class="form-vertical  js-form-loading" th:action="@{/administracao/motivoAtendimento/novo}" th:object="${motivoAtendimento}">
 				
-				<!-- <div layout:include="mensagens/MensagemGeral"></div>
+				<div layout:include="mensagens/MensagemGeralComVariavel"></div>
 
-				<div layout:include="mensagens/MensagemErroValidacao"></div> -->
+				<div layout:include="mensagens/MensagemErroValidacao"></div>
 
 				<input type="hidden" th:field="*{id}" />
 

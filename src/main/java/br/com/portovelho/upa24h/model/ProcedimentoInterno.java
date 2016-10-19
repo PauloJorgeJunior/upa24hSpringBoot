@@ -2,17 +2,25 @@ package br.com.portovelho.upa24h.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotBlank;
 
+import br.com.portovelho.upa24h.enums.TipoSalaAtendimento;
+
+
 @Entity
 @Audited
 public class ProcedimentoInterno {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -27,12 +35,18 @@ public class ProcedimentoInterno {
 	@Column(unique=true)
 	private String descricao;
 
-	/*@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)
 	@NotNull(message = "O campo Tipo de Sala é obrigatório!")
-	private TipoSalaAtendimento tipoSalaAtendimento;*/
+	private TipoSalaAtendimento tipoSalaAtendimento;
 
 	private Boolean status;
 
+	@PrePersist
+	@PreUpdate
+	private void prePersistUpdate() {
+		descricao = descricao.toUpperCase();
+	}
+	
 	public ProcedimentoInterno() {
 		this.status = true;
 	}
@@ -55,6 +69,14 @@ public class ProcedimentoInterno {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public TipoSalaAtendimento getTipoSalaAtendimento() {
+		return tipoSalaAtendimento;
+	}
+
+	public void setTipoSalaAtendimento(TipoSalaAtendimento tipoSalaAtendimento) {
+		this.tipoSalaAtendimento = tipoSalaAtendimento;
 	}
 
 	public Boolean getStatus() {

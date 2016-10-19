@@ -1,5 +1,8 @@
 package br.com.portovelho.upa24h.controller.administracao;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.portovelho.upa24h.enums.TipoSalaAtendimento;
 import br.com.portovelho.upa24h.model.ProcedimentoInterno;
 import br.com.portovelho.upa24h.repository.filter.ProcedimentoInternoFiltro;
 import br.com.portovelho.upa24h.service.ProcedimentoInternoService;
@@ -22,16 +26,16 @@ import br.com.portovelho.upa24h.service.ProcedimentoInternoService;
 @RequestMapping("/administracao/procedimentoInterno")
 public class ProcedimentoInternoController {
 
-	private static final String PROCED_INTERNO_CAD_VIEW = "/administracao/procedimentoInterno/CadastroMotivoAtendimento";
-	private static final String PROCED_INTERNO_PESQUISA_VIEW = "/administracao/procedimentoInterno/PesquisaMotivoAtendimento";
+	private static final String PROCED_INTERNO_CAD_VIEW = "/administracao/procedimentoInterno/CadastroProcedimentoInterno";
+	private static final String PROCED_INTERNO_PESQUISA_VIEW = "/administracao/procedimentoInterno/PesquisaProcedimentoInterno";
 
 	@Autowired
 	private ProcedimentoInternoService procedimentoInternoService;
 
-	/*@ModelAttribute("todosTiposSalas")
+	@ModelAttribute("todosTiposSalas")
 	public List<TipoSalaAtendimento> todosTiposSalas() {
 		return Arrays.asList(TipoSalaAtendimento.values());
-	}*/
+	}
 
 	@RequestMapping
 	public ModelAndView listaProcedimentosInterno(@ModelAttribute("filtro") ProcedimentoInternoFiltro filtro) {

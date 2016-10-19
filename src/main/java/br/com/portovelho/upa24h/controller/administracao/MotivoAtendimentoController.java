@@ -2,16 +2,20 @@ package br.com.portovelho.upa24h.controller.administracao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.portovelho.upa24h.model.MotivoAtendimento;
 import br.com.portovelho.upa24h.repository.filter.MotivoAtendimentoFiltro;
 import br.com.portovelho.upa24h.service.MotivoAtendimentoService;
+import br.com.portovelho.upa24h.util.MensagemDeErro;
 
 @Controller
 @RequestMapping("/administracao/motivoAtendimento")
@@ -37,7 +41,7 @@ public class MotivoAtendimentoController {
 	return mv;
     }
 
-    /*@RequestMapping(value = "/novo", method = RequestMethod.POST)
+    @RequestMapping(value = "/novo", method = RequestMethod.POST)
     public String salvarMotivoAtendimento(@Validated MotivoAtendimento motivoAtendimento, Errors errors,
 	    RedirectAttributes attributes) {
 	if (errors.hasErrors()) {
@@ -45,8 +49,8 @@ public class MotivoAtendimentoController {
 	}
 	MensagemDeErro mensagemDeErro = motivoAtendimentoService.salvar(motivoAtendimento);
 	attributes.addFlashAttribute("mensagem", mensagemDeErro);
-	return "redirect: /novo";
-    }*/
+	return "redirect:/administracao/motivoAtendimento/novo";
+    }
 
     @RequestMapping("/{id}")
     public ModelAndView edicaoMotivoAtendimento(@PathVariable("id") MotivoAtendimento motivoAtendimento) {

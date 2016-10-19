@@ -20,7 +20,7 @@ public class ProcedimentoInternoService {
 
 	public List<ProcedimentoInterno> filtrar(ProcedimentoInternoFiltro filtro) {
 		String descricao = filtro.getDescricao() == null ? "%" : filtro.getDescricao();
-		return procedimentoInternoRepository.findByDescricaoContainingOrderByDescricaoAsc(descricao);
+		return procedimentoInternoRepository.findByDescricaoContainingOrderByDescricaoAsc(descricao.toUpperCase());
 	}
 
 	public String mudarStatus(Long id) {
@@ -41,4 +41,5 @@ public class ProcedimentoInternoService {
 			throw (ConstraintViolationException) e.getCause();
 		}
 	}
+
 }
